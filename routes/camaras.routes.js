@@ -1,0 +1,10 @@
+import _express from 'express';
+import * as c from '../controllers/camaras.controller.js';
+const router = _express.Router();
+router.get('/', c.getAll);
+router.get('/:id', c.getById);
+router.post('/', c.create);
+router.put('/:id', c.update);
+router.patch('/:id', c.update);
+router.delete('/:id', c.deletes);
+export default router;
