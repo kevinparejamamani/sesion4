@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+
 import * as users from '../services/usuarios.service.js';
 
 const SECRET = process.env.JWT_SECRET || 'dev_secret_key_123';
@@ -11,7 +11,7 @@ export const login = async (req, res) => {
     const u = await users.obtenerPorEmail(email);
     if (!u) return res.status(401).json({ error: 'Credenciales inválidas' });
     if (u.bloqueado) return res.status(403).json({ error: 'Usuario bloqueado' });
-    const ok = await bcrypt.compare(password, u.password);
+
     if (!ok) return res.status(401).json({ error: 'Credenciales inválidas' });
     const token = jwt.sign({ id:u.id_usuario, email:u.email }, SECRET, { expiresIn: EXP });
     res.json({ token });
