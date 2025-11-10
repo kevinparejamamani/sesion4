@@ -1,7 +1,13 @@
 import * as s from '../services/usuarios.service.js';
 
 export const listar = async (req, res) => {
-  try { res.json(await s.listar()); } catch(e){ res.status(500).json({error:'Error listando usuarios'}); }
+  try {
+    const usuarios = await s.listar();
+    res.json(usuarios);
+  } catch (e) {
+    console.error('Error al listar usuarios:', e); // 👈 imprime el error exacto
+    res.status(500).json({ error: 'Error listando usuarios' });
+  }
 };
 export const obtener = async (req, res) => {
   try { res.json((await s.obtener(req.params.id)) || {}); } catch(e){ res.status(500).json({error:'Error obteniendo usuario'}); }

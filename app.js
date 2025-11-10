@@ -28,5 +28,5 @@ app.listen(PUERTO, () => {
     console.log('Listening on '+PUERTO);
 });
 
-app.use(helmet.frameguard({ action: 'deny' })); // Previene Clickjacking
+
 
