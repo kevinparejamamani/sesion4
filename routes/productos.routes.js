@@ -1,6 +1,6 @@
 import _express from 'express';
 import * as c from '../controllers/productos.controller.js';
-import auth from '../middlewares/auth.js';
+
 import { upload, uploadProductoImagen, descargarProductoImagen } from '../controllers/files.controller.js';
 
 const router = _express.Router();

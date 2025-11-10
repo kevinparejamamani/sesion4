@@ -1,6 +1,6 @@
 import _express from 'express';
 import * as c from '../controllers/usuarios.controller.js';
-import auth from '../middlewares/auth.js';
+
 
 const router = _express.Router();
 router.get('/',  c.listar);
