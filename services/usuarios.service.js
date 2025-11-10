@@ -1,5 +1,5 @@
 import { Usuario } from '../models/usuario.model.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export const listar = () => Usuario.findAll({ where:{ activo:true } });
 export const obtener = (id) => Usuario.findOne({ where:{ id_usuario:id, activo:true } });

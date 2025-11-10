@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import * as users from '../services/usuarios.service.js';
 
 const SECRET = process.env.JWT_SECRET || 'dev_secret_key_123';
