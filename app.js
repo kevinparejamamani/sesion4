@@ -14,7 +14,7 @@ app.use(_bodyParser.urlencoded({ extended: true,
 app.use(_cors);
 
 //... endpoints ...
-app.use("/api/v1", api);
+app.use("/api/v2", api);
 
 //... inicializamos la bd en desarrollo ...
 //await orm.sync({ force: true });
