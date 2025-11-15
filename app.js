@@ -1,32 +1,23 @@
-import _express from "express";
-import _bodyParser from "body-parser";
-import _cors from "./config/cors.js";
-//import orm from './config/sequelize.js';
-import helmet from 'helmet';
-import PUERTO from "./utils/constantes.js";
-import api from "./routes.js"
+export default function(req, res, next) {
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://kevinparejamamani.lat"
+  ];
 
-const app= _express();
+  const origin = req.headers.origin;
 
-app.use(_bodyParser.json());
-app.use(_bodyParser.urlencoded({ extended: true, 
-    type: 'application/x-www-form-urlencoded' }));
-app.use(_cors);
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
 
-//... endpoints ...
-app.use("/api/v2", api);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
 
-//... inicializamos la bd en desarrollo ...
-//await orm.sync({ force: true });
-//await orm.sync({ alter: true });
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
 
-//listar archivos en la web
-app.use(_express.static('uploads'));
-
-//... servidor ...
-app.listen(PUERTO, () => {
-    console.log('Listening on '+PUERTO);
-});
-
-
-
+  next();
+}
